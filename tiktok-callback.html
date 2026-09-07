@@ -1,0 +1,14 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Biohack Beauty · TikTok authorization</title>
+<meta name="robots" content="noindex">
+<p id="m" style="font:16px system-ui;margin:2em">Connecting to Biohack Beauty… / กำลังเชื่อมต่อ…</p>
+<script>
+// TikTok refuses redirect_uri on nip.io hosts (edge 403), so this verified page receives
+// ?code&state and forwards them to the n8n relay. Nothing is stored here.
+(function () {
+  var q = location.search.slice(1);
+  if (!q) { document.getElementById('m').textContent = 'No authorization data received.'; return; }
+  location.replace('https://5-223-91-147.nip.io/webhook/tiktok-oauth?' + q);
+})();
+</script>
